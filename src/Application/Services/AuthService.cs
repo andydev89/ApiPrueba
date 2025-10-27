@@ -15,7 +15,7 @@ namespace ApiPrueba.src.Application.Services
         public AuthService(IUserRepository users, IConfiguration cfg)
         {
             _users = users;
-            _jwtKey = cfg["Jwt:Key"] ?? "ejemplokey";
+            _jwtKey = cfg["Jwt:Key"] ?? "v3ry_long_local_dev_secret_key_please_change_1234567890!!";
         }
         public async Task<TokenResponse?> LoginAsync(LoginRequest req)
         {

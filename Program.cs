@@ -1,5 +1,8 @@
 using ApiPrueba.src.Api.Extensions;
 using ApiPrueba.src.Infrastructure.Data;
+using SQLitePCL;
+
+SQLitePCL.Batteries.Init();
 
 var builder = WebApplication.CreateBuilder(args);
 

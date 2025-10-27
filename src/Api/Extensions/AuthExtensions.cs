@@ -8,7 +8,7 @@ public static class AuthExtensions
 {
     public static IServiceCollection AddJwtAuth(this IServiceCollection services, IConfiguration cfg)
     {
-        var key = cfg["Jwt:Key"] ?? "ejemplokey";
+        var key = cfg["Jwt:Key"] ?? "v3ry_long_local_dev_secret_key_please_change_1234567890!!";
         var skey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(o => {
