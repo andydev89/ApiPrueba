@@ -1,6 +1,17 @@
-﻿namespace ApiPrueba.src.Api.Extensions
+﻿namespace ApiPrueba.src.Api.Extensions;
+
+public static class SwaggerExtensions
 {
-    public class SwaggerExtensions
+    public static IServiceCollection AddSwaggerDocs(this IServiceCollection services)
     {
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
+        return services;
+    }
+    public static IApplicationBuilder UseSwaggerDocs(this IApplicationBuilder app)
+    {
+        app.UseSwagger(); app.UseSwaggerUI();
+        return app;
     }
 }
+

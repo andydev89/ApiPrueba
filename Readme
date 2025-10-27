@@ -1,0 +1,4 @@
+dotnet tool install --global dotnet-ef
+dotnet ef migrations add Initial -p Infrastructure -s Api
+dotnet ef database update -p Infrastructure -s Api
+dotnet run --project src/Api/Api.csproj
