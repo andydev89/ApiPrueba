@@ -14,7 +14,7 @@ public class ProductRepository : IProductRepository
     {
         var query = _db.Products.AsQueryable();
         if (!string.IsNullOrWhiteSpace(q))
-            query = query.Where(p => p.Name.Contains(q));
+            query = query.Where(p => p.Name.ToLower().Contains(q));
         var total = await query.CountAsync();
         var items = await query.OrderByDescending(p => p.CreatedAt)
                                .Skip((page - 1) * pageSize)
