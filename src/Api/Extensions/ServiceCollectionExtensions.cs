@@ -18,7 +18,8 @@ public static class ServiceCollectionExtensions
         services.AddDbContext<AppDbContext>(options =>
         options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
         //Fin Mysql Conection
-
+        services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+        services.AddScoped(typeof(IService<,>), typeof(Service<,>));
         services.AddScoped<IRepository<ListaSeguimiento, int>, Repository<ListaSeguimiento, int>>();
         services.AddScoped<IRepository<ElementoLista, int>, Repository<ElementoLista, int>>();
         services.AddScoped<IRepository<Titulo, int>, Repository<Titulo, int>>();
@@ -26,6 +27,10 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IAuthService, AuthService>();
+
+        services.AddScoped<IUsuarioService, UsuarioService>();
+        services.AddScoped<IListaSeguimientoService, ListaSeguimientoService>();
+        services.AddScoped<ITituloService, TituloService>();
         return services;
     }
 }

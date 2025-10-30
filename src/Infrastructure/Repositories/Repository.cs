@@ -38,8 +38,7 @@ namespace ApiPrueba.src.Infrastructure.Repositories;
     }
     public async Task<T> GetById(I id)
     {
-        var t = await _entities.FindAsync(id);
-        if (t == null) throw new NotFoundException("No existe");
+        var t = await _entities.FindAsync(id);      
         return t;
     }
     public async Task<T> Add(T entity)
@@ -79,6 +78,44 @@ namespace ApiPrueba.src.Infrastructure.Repositories;
     {
         _entities.RemoveRange(entities);
         await _db.SaveChangesAsync();
+    }
+
+    public async Task<(IEnumerable<T> Items, int TotalCount)> ListPagedAsync(
+            Expression<Func<T, bool>>? predicate = null,
+            int page = 1,
+            int pageSize = 10,
+            Expression<Func<T, object>>? orderBy = null,
+            bool descending = false)
+    {
+        if (page <= 0) page = 1;
+        if (pageSize <= 0) pageSize = 10;
+
+        IQueryable<T> query = _entities.AsQueryable();
+
+      
+        if (predicate != null)
+            query = query.Where(predicate);
+
+     
+        int totalCount = await query.CountAsync();
+
+      
+        if (orderBy != null)
+            query = descending ? query.OrderByDescending(orderBy) : query.OrderBy(orderBy);
+
+      
+        var items = await query
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (items, totalCount);
+    }
+
+    
+    public IQueryable<T> Query()
+    {
+        return _entities.AsQueryable();
     }
 
 }
