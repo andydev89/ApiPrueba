@@ -1,8 +1,2 @@
-dotnet new xunit -n ApiPrueba.Tests
-dotnet sln add ApiPrueba.Tests/ApiPrueba.Tests.csproj
-dotnet add ApiPrueba.Tests reference ApiPrueba/ApiPrueba.csproj
-
-dotnet add ApiPrueba.Tests package Microsoft.EntityFrameworkCore.InMemory
-dotnet add ApiPrueba.Tests package Moq
-dotnet add ApiPrueba.Tests package FluentAssertions
-
+﻿● BBDD: MySQL
+● API: .NET (C#
