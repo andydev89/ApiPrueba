@@ -1,2 +1,8 @@
 ﻿● BBDD: MySQL
-● API: .NET (C#
+● API: .NET (C#)
+
+
+
+la aplicacion contiene un seed para cargar usuer admin de prueba donde se cargan todos los datos
+-correr migraciones 
+-actualizar base de datos antes 
