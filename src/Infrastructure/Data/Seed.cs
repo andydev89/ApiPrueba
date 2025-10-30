@@ -10,14 +10,9 @@ public static class Seed
         await db.Database.MigrateAsync();
         if (!await db.Users.AnyAsync())
         {
-            db.Users.Add(new User { Email = "admin@demo.com", PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin123!"), Role = "admin" });
-            db.Users.Add(new User { Email = "user@demo.com", PasswordHash = BCrypt.Net.BCrypt.HashPassword("User123!"), Role = "user" });
+            db.Users.Add(new User { Email = "admin@demo.com", Password = BCrypt.Net.BCrypt.HashPassword("Admin123!"), Name = "Administrador", CreatedAt = DateTime.Now , Role = "admin" });
         }
-        if (!await db.Products.AnyAsync())
-        {
-            db.Products.Add(new Product { Name = "Café Molido", Price = 4.50m, Stock = 50 });
-            db.Products.Add(new Product { Name = "Leche Entera", Price = 1.20m, Stock = 100 });
-        }
+        
         await db.SaveChangesAsync();
     }
 }
