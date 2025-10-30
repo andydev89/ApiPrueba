@@ -14,4 +14,12 @@ public interface IRepository<T, I> where T : BaseEntity<I>
     Task<bool> Delete(I id);
     Task<bool> AddRangeAsync(IEnumerable<T> entites);
     Task DeleteRangeAsync(IEnumerable<T> entities);
+
+    Task<(IEnumerable<T> Items, int TotalCount)> ListPagedAsync(
+            Expression<Func<T, bool>>? predicate = null,
+            int page = 1,
+            int pageSize = 10,
+            Expression<Func<T, object>>? orderBy = null,
+            bool descending = false);
+    IQueryable<T> Query();
 }

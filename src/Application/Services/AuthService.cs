@@ -34,7 +34,7 @@ namespace ApiPrueba.src.Application.Services
                 signingCredentials: creds
             );
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-            return new TokenResponse(jwt, user.Email, user.Role);
+            return new TokenResponse(jwt, user.Email, user.Role, user.Id, user.Name);
         }
 
 

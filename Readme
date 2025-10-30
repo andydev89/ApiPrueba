@@ -1,8 +1,8 @@
-dotnet new xunit -n ApiPrueba.Tests
-dotnet sln add ApiPrueba.Tests/ApiPrueba.Tests.csproj
-dotnet add ApiPrueba.Tests reference ApiPrueba/ApiPrueba.csproj
+﻿● BBDD: MySQL
+● API: .NET (C#)
 
-dotnet add ApiPrueba.Tests package Microsoft.EntityFrameworkCore.InMemory
-dotnet add ApiPrueba.Tests package Moq
-dotnet add ApiPrueba.Tests package FluentAssertions
 
+
+la aplicacion contiene un seed para cargar usuer admin de prueba donde se cargan todos los datos
+-correr migraciones 
+-actualizar base de datos antes 
