@@ -20,7 +20,7 @@ namespace ApiPrueba.src.Application.Services
         public async Task<TokenResponse?> LoginAsync(LoginRequest req)
         {
             var user = await _users.GetByEmailAsync(req.Email);
-            if (user is null || !BCrypt.Net.BCrypt.Verify(req.Password, user.PasswordHash)) return null;
+            if (user is null || !BCrypt.Net.BCrypt.Verify(req.Password, user.Password)) return null;
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -36,5 +36,7 @@ namespace ApiPrueba.src.Application.Services
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return new TokenResponse(jwt, user.Email, user.Role);
         }
+
+
     }
 }
